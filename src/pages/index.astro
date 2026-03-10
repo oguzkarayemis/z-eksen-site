@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import BookCard from '../components/BookCard.astro';
+
+const books = await getCollection('books');
+---
+
+<Layout title="Z-Eksen E-Yayıncılık | Derinliği Keşfet">
+  <section class="hero">
+    <h1>Dijital Zanaatkârlık ve Derin Kavrayış</h1>
+    <p class="subtitle">Ana akım gürültüsünden uzak, yaşamın kadim ve güncel problemlerini çözen temel metinler.</p>
+  </section>
+
+  <section class="publications">
+    <h2>Yayınlarımız</h2>
+    <div class="book-grid">
+      {books.map((book) => (
+        <BookCard book={book} />
+      ))}
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <h2>Biz Kimiz?</h2>
+    <p>
+      <strong>Z-Eksen E-Yayıncılık;</strong> teknolojinin sadece bir araç değil yeni bir toplumsal örgütlenme biçimi olduğunu savunan, blokzincir felsefesi, kripto-ekonomi politiği ve dijital yönetişim gibi günümüz meselelerini kadim geleneklerle ve meselelerle buluşturan, kürasyon esaslı bir dijital yayınevidir. Biz, X ve Y eksenindeki gürültüyle değil Z eksenindeki bilgiyle ilgileniyoruz.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    margin: 4rem 0;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-text);
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+  
+  .publications {
+    margin-top: 4rem;
+  }
+  .publications h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  .publications h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+
+  .manifesto {
+    margin-top: 4rem;
+    padding: 2.5rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: transparent;
+  }
+  .manifesto h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BookCard from '../../components/BookCard.astro';
+
+const books = await getCollection('books');
+---
+
+<Layout title="Kitaplar | z-eksen e-yayıncılık" description="Blokzincir felsefesi, kripto-ekonomi politiği ve açık ağ kültürü üzerine derinlikli edisyonlar.">
+  <section class="hero">
+    <h1>Kitaplar</h1>
+    <p class="subtitle">Blokzincir felsefesi, açık ağ kültürü gibi dijital yaşamın temel meseleleri ile gündelik yaşamın kadim meseleleri üzerine derinlikli edisyonlar.</p>
+  </section>
+
+  <section class="books-list">
+    {books.length > 0 ? (
+      <div class="book-grid">
+        {books.map((book) => (
+          <BookCard book={book} />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">Henüz yayımlanmış bir kitap bulunmamaktadır.</p>
+    )}
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    margin: 4rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px dashed var(--color-bg-secondary);
+    padding-bottom: 2rem;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .books-list {
+    margin-bottom: 4rem;
+  }
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem 0;
+  }
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: 3rem;
+    background-color: var(--color-bg-secondary);
+    border-radius: 4px;
+  }
+</style>

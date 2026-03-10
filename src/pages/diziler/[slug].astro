@@ -1,0 +1,101 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BookCard from '../../components/BookCard.astro';
+
+export async function getStaticPaths() {
+  const diziler = await getCollection('diziler');
+  return diziler.map((dizi) => ({
+    params: { slug: dizi.slug },
+    props: { dizi },
+  }));
+}
+
+const { dizi } = Astro.props;
+const { title, description } = dizi.data;
+const { Content } = await dizi.render();
+
+const diziBooks = await getCollection('books', ({ data }) => data.dizi === dizi.slug);
+---
+
+<Layout title={`${title} | Z-Eksen E-Yayıncılık`} description={description}>
+  <article class="dizi-detail">
+    <header class="dizi-header">
+      <h1>{title}</h1>
+      <p class="description">{description}</p>
+    </header>
+    
+    <div class="dizi-content render-content">
+      <Content />
+    </div>
+
+    <section class="dizi-books">
+      <h2>Bu Dizideki Kitaplar</h2>
+      {diziBooks.length > 0 ? (
+        <div class="book-grid">
+          {diziBooks.map((book) => (
+            <BookCard book={book} />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state">Bu diziye ait henüz kitap bulunmamaktadır.</p>
+      )}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .dizi-header {
+    margin: 4rem 0 2rem;
+    text-align: center;
+    border-bottom: 1px dashed var(--color-bg-secondary);
+    padding-bottom: 2rem;
+  }
+  .dizi-header h1 {
+    font-size: 2.5rem;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+  .description {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .dizi-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 4rem;
+  }
+  .dizi-books h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  .dizi-books h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+  }
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: 2rem;
+    background-color: var(--color-bg-secondary);
+  }
+</style>

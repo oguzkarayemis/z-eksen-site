@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const books = await getCollection('books');
+  return books.map((book) => ({
+    params: { slug: book.slug },
+    props: { book },
+  }));
+}
+
+const { book } = Astro.props;
+const { title, author, description, price, coverImage, googlePlayUrl } = book.data;
+const { Content } = await book.render();
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": title,
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "url": new URL(Astro.url.pathname, Astro.site).href,
+  "description": description,
+  "offers": {
+    "@type": "Offer",
+    "price": price,
+    "priceCurrency": "TRY",
+    "availability": "https://schema.org/InStock",
+    "url": googlePlayUrl
+  }
+};
+---
+
+<Layout title={`${title} | Z-Eksen E-Yayıncılık`} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="book-detail">
+    <div class="book-header">
+      {coverImage && <img src={coverImage} alt={`${title} Kapak Resmi`} class="book-cover" />}
+      <div class="book-info">
+        <h1>{title}</h1>
+        <h2 class="author">{author}</h2>
+        
+        <div class="price-action">
+          <span class="price">{price} TL</span>
+          <a href={googlePlayUrl} target="_blank" rel="noopener noreferrer" class="buy-button">Google Play'den Satın Al</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="book-content">
+      <div class="description">
+        <p>{description}</p>
+      </div>
+      <div class="render-content">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .book-detail {
+    margin-top: 2rem;
+  }
+  .book-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .book-cover {
+    max-width: 300px;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid var(--color-bg-secondary);
+  }
+  .book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .book-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .author {
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  .price-action {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-bg-secondary);
+  }
+  .price {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .buy-button {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .buy-button:hover {
+    background-color: #5c0000;
+    color: #ffffff;
+  }
+  .book-content {
+    line-height: 1.8;
+  }
+  .description {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px dashed var(--color-bg-secondary);
+  }
+  
+  .render-content :global(h2) {
+    margin-top: 2rem;
+    color: var(--color-accent);
+  }
+  @media (max-width: 768px) {
+    .book-header { flex-direction: column; align-items: center; text-align: center; }
+    .book-cover { max-width: 100%; height: auto; }
+    .price-action { flex-direction: column; width: 100%; gap: 1rem; }
+    .buy-button { width: 100%; text-align: center; }
+  }
+</style>

@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Manifesto | z-eksen e-yayıncılık" description="Z-Eksen felsefesi ve yayıncılık yaklaşımı">
+  <article class="manifesto-page">
+    <header class="manifesto-header">
+      <h1>z-eksen manifestosu</h1>
+      <p class="subtitle">Ana Akım Gürültüden Kaçış</p>
+    </header>
+
+    <div class="manifesto-content">
+      <p>Bugün dijital dünya uçsuz bucaksız bir gürültü okyanusu. Yayıncılık sektörü daha hızlı üretmenin, daha çok satmanın ve sürekli yatayda büyümenin peşinde. Herkes sayfayı sağa, sola, aşağı veya yukarı kaydırıyor. Yani herkes <strong>X ve Y eksenlerinde</strong>, yüzeyde geziniyor.</p>
+
+      <p class="highlight-statement">Biz bu yüzeyselliği reddediyoruz.</p>
+
+      <p>Matematikte <strong>z ekseni</strong>, derinliği temsil eder. <strong>Z-Eksen E-Yayıncılık</strong> olarak işimizi yeni sözcükler icat ederek bu gürültüyü artırmak olarak görmüyoruz. Zamanın sınavından geçmiş, insanlığın kaderini değiştirmiş ve gerçekten "okunmaya değer" metinleri okyanusun dibinden çıkarmak ve Türkiyeli okura ulaştırmak istiyoruz.</p>
+
+      <p>İnternetin tozlu raflarında veya akademik arşivlerde yatan metinleri alıyor ve onları "otomatik çeviri" kirliliğinden arındırıyor, kültürel bağlamını açıklayan dipnotlarla işliyor ve teknik olarak kusursuz dijital kitaplara dönüştürüyoruz.</p>
+
+      <p>İki zıt kutupta, tek bir felsefeyle çalışıyoruz:</p>
+
+      <ul class="manifesto-list">
+         <li><strong>Yaşam Bilgeliği:</strong> İnsanlığı yüzyıllardır meşgul etmiş meseleleri ele alan, bu meselelere yanıtlar arayan klasiklere "edisyon kritik" hassasiyetiyle yeniden can veriyoruz.</li>
+         <li><strong>Dijital Yaşam Bilgeliği:</strong> Yapay zekâ manifestolarından kripto zincirin vizyonerlerine, sosyal medyanın etkilerinden oyun evrenlerine kadar geleceğimizi yazan kodların ardındaki felsefeyi Türkçeye kazandırıyoruz.</li>
+      </ul>
+
+      <p>Biz, yaşlı baskı makinelerini, dağıtım ağlarını aradan çıkarıp bilgiyi doğrudan ekranlarınıza getiriyoruz.</p>
+
+      <p>Çünkü biliyoruz ki yüzey ne kadar kalabalık ve gürültülü olursa olsun bilgeliğin ve geleceğin inşası her zaman derinlerde gerçekleşir.</p>
+
+      <p class="highlight-statement end-statement">Biraz derine inmeye ne dersiniz?</p>
+
+      <div class="contact-section">
+        <p>Yayınlarımız hakkında bilgi almak ve diğer her tür sorunuz için bizimle iletişime geçin:<br/>
+        <a href="mailto:info@z-eksen.org" class="contact-link">info@z-eksen.org</a></p>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .manifesto-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .manifesto-header {
+    margin: 5rem 0 3rem;
+    text-align: center;
+  }
+  
+  .manifesto-header h1 {
+    font-size: 3rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  
+  
+  .subtitle::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-text-muted);
+    margin: 2rem auto 0;
+  }
+
+  .manifesto-content {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+  
+  .manifesto-content p {
+    margin-bottom: 1.75rem;
+  }
+
+  
+  .highlight-statement {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3.5rem 0;
+    line-height: 1.4;
+  }
+  
+  .end-statement {
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+
+  
+  .manifesto-list {
+    margin: 2.5rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .manifesto-list li {
+    margin-bottom: 1.5rem;
+  }
+  
+  .manifesto-list li strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  
+  .contact-section {
+    margin-top: 4rem;
+    padding: 2.5rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: transparent;
+  }
+  
+  .contact-section p {
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+  }
+  
+  .contact-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-text);
+    transition: opacity 0.2s ease;
+  }
+  
+  .contact-link:hover {
+    opacity: 0.6;
+  }
+</style>

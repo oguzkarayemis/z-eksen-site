@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Z-Eksen E-Yayıncılık. Blokzincir, Kripto-Ekonomi Politiği ve Dijital Yönetişim." } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- SEO & Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="site-logo-container">
+          <img src="/Logo-ters.png" alt="Z-Eksen Logo" class="header-logo" /> 
+          <span class="site-title-lowercase">z-eksen e-yayıncılık</span>
+        </a>
+        <nav>
+          <a href="/kitaplar/">Kitaplar</a>
+          <a href="/diziler/">Diziler</a>
+          <a href="/manifesto/">Manifesto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Z-Eksen E-Yayıncılık &copy; {new Date().getFullYear()}. "Derinliği Keşfet."</p>
+        <div class="footer-contact">İletişim: <a href="mailto:info@z-eksen.org">info@z-eksen.org</a></div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    padding: 1.5rem 0;
+  }
+  .site-header .container {
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-header a {
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+  .site-header a:hover {
+    color: var(--color-accent);
+  }
+  .site-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .header-logo {
+    height: 40px;
+    width: auto;
+  }
+  .site-title-lowercase {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .site-footer {
+    border-top: 1px solid var(--color-bg-secondary);
+    margin-top: 4rem;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+  @media (max-width: 600px) {
+    .site-header .container {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    nav {
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+</style>
