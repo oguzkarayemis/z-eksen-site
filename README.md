@@ -1,5 +1,5 @@
 # z-eksen e-yayıncılık
-Bu depo, Z-Eksen E-Yayıncılık'ın (z-eksen.org / z-eksen.eth) IPFS uyumlu statik web sitesinin kaynak kodlarını barındırır. "Dijital Zanaatkârlık" ve "Anti-Moloch" felsefesiyle, sıfır JS (Astro) mimarisi kullanılarak inşa edilmiştir.
+Bu depo, z-eksen e-yayıncılık'ın (z-eksen.org / z-eksen.eth) IPFS uyumlu statik web sitesinin kaynak kodlarını barındırır. "Dijital Zanaatkârlık" ve "Anti-Moloch" felsefesiyle, sıfır JS (Astro) mimarisi kullanılarak inşa edilmiştir.
 
 ## Mimari Özellikler
 - **Framework:** Astro (Static Site Generation)
