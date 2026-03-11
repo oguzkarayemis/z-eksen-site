@@ -1,5 +1,5 @@
 ---
-title: "Seçme Yazılar: Blokzincir ve Ötesi"
+title: "Kriptofelsefe: Blokzincir ve Merkezsiz Toplum"
 author: "Vitalik Buterin"
 description: "Ethereum kurucusu Vitalik Buterin'in dijital yönetişim, merkeziyetsizlik felsefesi ve açık kaynak etiği üzerine yazdığı makalelerden derlenen özel bir seçki."
 price: 150

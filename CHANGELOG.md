@@ -1,5 +1,8 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
+## [2026-03-12]
+- Vitalik Buterin'in kitap adı ve kapak görseli (`public/images/vitalik-cover.jpg` ve `src/content/books/vitalik-secmeler.md`) yenilendi.
+
 ## [2026-03-11]
 - **Manifesto ve Tipografi Güncellemesi**: Manifesto sayfasına ekibin "çeviri ve editörlük yaklaşımımız" vizyonu eklendi, yeni başlık sayfa tasarımına uyumlu olarak ortalandı. Okunabilirliği maksimize etmek için site genelindeki temel metin boyutu masaüstünde ve mobilde 1.2 kat (oranında) artırıldı, metin ağırlığı `600` (yarı kalın) seviyesine çekildi.
 - Gelişmiş Tarayıcı Optimizasyonu: Fontların sayfa açılışında yarattığı FOUT (Flash of Unstyled Text) sıçramasını engellemek adına CSS `font-display` özelliği `swap` yerine `optional` olarak düzenlendi, ilk yüklemedeki metin "zıplaması" izole edildi.
