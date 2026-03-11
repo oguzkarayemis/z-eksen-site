@@ -6,6 +6,8 @@ price: 150
 coverImage: "/images/vitalik-cover.jpg"
 googlePlayUrl: "https://play.google.com/store/books/details?id=dummy_id_vitalik"
 dizi: "dijital-yasam-bilgeligi"
+pubDate: 2024-03-01
+manset: true
 ---
 
 ## Kitap Hakkında

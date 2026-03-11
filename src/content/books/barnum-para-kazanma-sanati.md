@@ -6,6 +6,7 @@ price: 150
 coverImage: "/images/barnum-cover.jpg"
 googlePlayUrl: "https://play.google.com/store/books/details?id=dummy_id_barnum"
 dizi: "yasam-bilgeligi"
+pubDate: 2024-01-01
 ---
 
 ## Kitap Hakkında

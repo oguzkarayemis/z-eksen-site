@@ -5,7 +5,9 @@ const booksCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     author: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    manset: z.boolean().optional(),
     price: z.number(),
     coverImage: z.string().optional(),
     googlePlayUrl: z.string().url(),

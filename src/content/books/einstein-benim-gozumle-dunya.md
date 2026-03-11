@@ -6,6 +6,7 @@ price: 150
 coverImage: "/images/einstein-cover.jpg"
 googlePlayUrl: "https://play.google.com/store/books/details?id=dummy_id_einstein"
 dizi: "yasam-bilgeligi"
+pubDate: 2024-02-01
 ---
 
 ## Kitap Hakkında

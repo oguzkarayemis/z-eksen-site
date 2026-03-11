@@ -3,22 +3,66 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BookCard from '../components/BookCard.astro';
 
-const books = await getCollection('books');
+const allBooks = await getCollection('books');
+
+// Tarihe göre en yeniden en eskiye sırala
+const sortedBooks = allBooks.sort((a, b) => {
+  const dateA = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
+  const dateB = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
+  return dateB - dateA;
+});
+
+// Manşet kitabı bul, yoksa en yeni kitabı al
+const mansetBook = sortedBooks.find(b => b.data.manset) || sortedBooks[0];
+
+// Manşetteki kitabı dışarıda bırak ve kalanlardan en yeni 3 tanesini al
+const latestBooks = sortedBooks.filter(b => b.id !== mansetBook?.id).slice(0, 3);
 ---
 
 <Layout title="z-eksen e-yayıncılık | Derinliği Keşfet">
-  <section class="hero">
+  <section class="hero text-center">
     <h1>Dijital Zanaatkârlık ve Derin Kavrayış</h1>
     <p class="subtitle">Ana akım gürültüsünden uzak, yaşamın kadim ve güncel problemlerini ele alan temel metinler.</p>
   </section>
 
   <section class="publications">
-    <h2>Yayınlarımız</h2>
-    <div class="book-grid">
-      {books.map((book) => (
-        <BookCard book={book} />
-      ))}
-    </div>
+
+  {mansetBook && (
+    <section class="hero-manset">
+      <div class="hero-content">
+        <div class="hero-text">
+          <span class="badge">Haftanın Öne Çıkanı</span>
+          <h1>{mansetBook.data.title}</h1>
+          <p class="author">{mansetBook.data.author}</p>
+          <p class="description">{mansetBook.data.description}</p>
+          <a href={`/kitaplar/${mansetBook.slug}/`} class="btn-primary">Kitabı İncele</a>
+        </div>
+        <div class="hero-image">
+          {mansetBook.data.coverImage ? (
+            <a href={`/kitaplar/${mansetBook.slug}/`}>
+              <img src={mansetBook.data.coverImage} alt={`${mansetBook.data.title} Kapak Resmi`} loading="eager" />
+            </a>
+          ) : (
+            <div class="cover-placeholder">Görsel Yok</div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {latestBooks.length > 0 && (
+    <section class="latest-publications">
+      <h2>Son Çıkanlar</h2>
+      <div class="book-grid">
+        {latestBooks.map((book) => (
+          <BookCard book={book} />
+        ))}
+      </div>
+      <div class="archive-link-container">
+        <a href="/kitaplar/" class="btn-secondary">Bütün Kataloğu Gör</a>
+      </div>
+    </section>
+  )}
   </section>
 
   <section class="manifesto">
@@ -30,11 +74,17 @@ const books = await getCollection('books');
 </Layout>
 
 <style>
-  .hero {
-    margin: 4rem 0;
+  /* Hero Ana Başlık */
+  .hero.text-center {
+    margin: 4rem auto;
     text-align: center;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .hero h1 {
+  .hero.text-center h1 {
     font-size: 2.5rem;
     color: var(--color-text);
   }
@@ -42,19 +92,22 @@ const books = await getCollection('books');
     font-size: 1.25rem;
     color: var(--color-text-muted);
     font-style: italic;
+    text-align: center;
   }
   
+  /* Yayınlarımız / Publications */
   .publications {
     margin-top: 4rem;
   }
-  .publications h2 {
+  .section-title {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     text-align: center;
     position: relative;
     padding-bottom: 0.5rem;
+    color: var(--color-text);
   }
-  .publications h2::after {
+  .section-title::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -65,23 +118,214 @@ const books = await getCollection('books');
     background-color: var(--color-accent);
   }
 
+  /* Hero Manşet - Yatay devasa hero */
+  .hero-manset {
+    margin: 2rem 0 4rem;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-bg-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 768px) {
+    .hero-content {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  .hero-text {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .badge {
+    background-color: var(--color-accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    line-height: 1.25;
+  }
+
+  @media (min-width: 900px) {
+    .hero-text h1 {
+      font-size: 2.75rem;
+    }
+  }
+
+  .hero-text .author {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .hero-text .description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    padding: 0.8rem 1.75rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .hero-image {
+    flex: 1;
+    max-width: 100%;
+    background-color: var(--color-bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-image {
+      max-width: 400px;
+    }
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .hero-image a {
+    display: block;
+  }
+
+  .hero-image a:hover img {
+    transform: scale(1.03);
+  }
+
+  .cover-placeholder {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  /* Son Çıkanlar (3'lü Grid) */
+  .latest-publications {
+    margin-top: 5rem;
+  }
+  
+  .latest-publications h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .latest-publications h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+
   .book-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     padding: 1rem 0;
   }
+  
+  @media (min-width: 900px) {
+    .book-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 
-  .manifesto {
-    margin-top: 4rem;
-    padding: 2.5rem 0;
+  /* Bütün Kataloğu Gör Butonu */
+  .archive-link-container {
     text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-top: 3.5rem;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    padding: 0.75rem 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  /* Manifesto (Hakkımızda) */
+  .manifesto {
+    margin-top: 6rem;
+    padding: 4rem 1rem;
+    text-align: center;
+    border-top: 1px dashed var(--color-bg-secondary);
     background: transparent;
   }
+  
   .manifesto h2 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+  
+  .manifesto p {
+    color: var(--color-text);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.05rem;
   }
 </style>

@@ -1,5 +1,16 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
+## [2026-03-11]
+- Altbilgide (footer) yer alan Sosyal Medya ikonları (X ve Instagram) daha görünür olması amacıyla üst bilgiye (header), logo ile navigasyon menüsü arasına taşındı. Siyah arkaplanda daha şık durması için krem rengi ve hover durumunda kırmızı vurguya (Z-Eksen kırmızı) sahip özel SVG stil tanımlamaları (`fill`, `opacity`, `transition`) yapıldı.
+- Üst Bilgi (Header) tipografisi güçlendirildi: Ana logo yanındaki site başlığı ("z-eksen e-yayıncılık") ve navigasyon menüsündeki tüm bağlantılar (Kitaplar, Diziler, Manifesto) kalınlaştırılarak (font-weight: 700) görünürlükleri artırıldı.
+- Fontlar yerelleştirildi: Z-eksen'in dış sunucu (Google Fonts) bağımlılığını tamamen ortadan kaldırmak ve tam gizlilik/hız sağlamak amacıyla `Cormorant Garamond` web fontunun woff2 dosyaları sunucuya (`public/fonts/`) indirilerek siteye yerleşik olarak gömüldü. Artık site hiçbir dış font kaynağına bağlanmıyor.
+- Ana sayfadaki `Yayınlarımız` başlığı, sadeleştirme vizyonu doğrultusunda kaldırılarak hero metni ve editoryal vitrin arasındaki geçiş pürüzsüzleştirildi.
+- Ana sayfaya "Dijital Zanaatkârlık ve Derin Kavrayış" başlığı ve alt başlık metnini içeren Hero tasarımı geri getirildi ve CSS stilleri düzeltildi.
+- Zod şeması güncellendi: `books` koleksiyonuna `description` (string), `pubDate` (date) ve `manset` (boolean) alanları isteğe bağlı olarak eklendi.
+- Mevcut kitap Markdown dosyalarına `pubDate` ve `manset` verileri girildi. (Vitalik kitabı manşete taşındı).
+- `src/pages/index.astro` (Ana sayfa) "Editoryal Vitrin" mantığına geçirilerek, manşet kitabı devasa bir hero alanında, son çıkan 3 kitap ise yatay 3'lü CSS Grid (BookCard bileşeni) ile listelendi.
+- `src/pages/kitaplar/index.astro` (Arşiv sayfası) içindeki `BookCard` ızgara (grid) yapısı güncellendi: Kitaplar masaüstü görünümde (desktop) artık yana doğru 3'lü listelenecek şekilde düzenlendi (`@media (min-width: 900px)` breakpoint eklendi).
+
 ## [2026-03-09]
 - Astro mimarisi IPFS'e uyumlu olarak başlatıldı (site: z-eksen.eth.limo, IPFS relative link yapılandırmaları yapıldı).
 - Proje kök dizini ve temel `Layout.astro`, `index.astro` ve `global.css` dosyaları z-eksen marka kimliğine göre (Cormorant Garamond, monokrom & Akademik Kırmızı) yapılandırıldı.

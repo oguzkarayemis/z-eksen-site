@@ -3,12 +3,17 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BookCard from '../../components/BookCard.astro';
 
-const books = await getCollection('books');
+const allBooks = await getCollection('books');
+const books = allBooks.sort((a, b) => {
+  const dateA = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
+  const dateB = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
+  return dateB - dateA; // En yeniden en eskiye
+});
 ---
 
 <Layout title="Kitaplar | z-eksen e-yayıncılık" description="Blokzincir felsefesi, kripto-ekonomi politiği ve açık ağ kültürü üzerine derinlikli edisyonlar.">
   <section class="hero">
-    <h1>Kitaplar</h1>
+    <h1>Kitaplar Arşivi</h1>
     <p class="subtitle">Blokzincir felsefesi, açık ağ kültürü gibi dijital yaşamın temel meseleleri ile gündelik yaşamın kadim meseleleri üzerine derinlikli edisyonlar.</p>
   </section>
 
@@ -50,9 +55,15 @@ const books = await getCollection('books');
   }
   .book-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2.5rem;
     padding: 1rem 0;
+  }
+  
+  @media (min-width: 900px) {
+    .book-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   .empty-state {
     text-align: center;
