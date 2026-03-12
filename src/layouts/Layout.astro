@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/Logo-ters.png';
 
 interface Props {
   title: string;
@@ -39,7 +41,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <header class="site-header">
       <div class="container">
         <a href="/" class="site-logo-container">
-          <img src="/Logo-ters.png" alt="Z-Eksen Logo" class="header-logo" /> 
+          <Image src={logoImage} format="webp" width={80} loading="eager" alt="Z-Eksen Yayıncılık Logo" class="header-logo" /> 
           <span class="site-title-lowercase">z-eksen e-yayıncılık</span>
         </a>
         
