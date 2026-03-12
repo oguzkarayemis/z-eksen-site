@@ -31,13 +31,6 @@ const latestBooks = sortedBooks.filter(b => b.id !== mansetBook?.id).slice(0, 3)
   {mansetBook && (
     <section class="hero-manset">
       <div class="hero-content">
-        <div class="hero-text">
-          <span class="badge">Haftanın Öne Çıkanı</span>
-          <h1>{mansetBook.data.title}</h1>
-          <p class="author">{mansetBook.data.author}</p>
-          <p class="description">{mansetBook.data.description}</p>
-          <a href={`/kitaplar/${mansetBook.slug}/`} class="btn-primary">Kitabı İncele</a>
-        </div>
         <div class="hero-image">
           {mansetBook.data.coverImage ? (
             <a href={`/kitaplar/${mansetBook.slug}/`}>
@@ -46,6 +39,13 @@ const latestBooks = sortedBooks.filter(b => b.id !== mansetBook?.id).slice(0, 3)
           ) : (
             <div class="cover-placeholder">Görsel Yok</div>
           )}
+        </div>
+        <div class="hero-text">
+          <span class="badge">Haftanın Öne Çıkanı</span>
+          <h1>{mansetBook.data.title}</h1>
+          <p class="author">{mansetBook.data.author}</p>
+          <p class="description">{mansetBook.data.description}</p>
+          <a href={`/kitaplar/${mansetBook.slug}/`} class="btn-primary">Kitabı İncele</a>
         </div>
       </div>
     </section>
