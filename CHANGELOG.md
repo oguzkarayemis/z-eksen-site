@@ -1,6 +1,7 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
 ## [2026-03-12]
+- **Anasayfa Başlık Hiyerarşisi Optimizasyonu**: Anasayadaki manşetteki kitabın başlığı h1'den h2'ye alınarak SEO ve ekran okuyucular için optimize edildi.
 - **Hero Manşet Optimizasyonu**: Ana sayfada (`index.astro`) manşet kitap görseli, `BookCard` bileşeniyle değiştirildi. Böylece manşet kitap görseli masaüstünde sola taşındı ve metin ondan sonra görünür oldu. Bu sayede mobilde manşetteki kitap görseli metnin üstüne taşınmış oldu.
 - **Kitaplar Koleksiyonu Link Yapısı Optimizasyonu**: Kitap dosya isimleri yenilenerek sitedeki kitaplar koleksiyonu link yapısı güncellendi.
 - **Header Logo Optimizasyonu**: Sitenin ana logosu (`Logo-ters.png`) `src/assets/images/` klasörüne taşındı ve `Layout.astro` içerisindeki standart `<img>` etiketi Astro'nun yerleşik `<Image />` bileşenine (webp formatı, `loading="eager"`) dönüştürülerek sayfa ilk yükleme performansı (LCP) artırıldı.
