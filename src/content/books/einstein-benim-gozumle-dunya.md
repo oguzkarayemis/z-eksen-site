@@ -3,7 +3,7 @@ title: "Benim Gözümden Dünya"
 author: "Albert Einstein"
 description: "Sadece bir fizik dehasının değil, milliyetçiliği bir hastalık olarak gören, otoriteyi reddeden ve entelektüel özgürlüğü savunan bir anarşist ruhun manifestosu."
 price: 150
-coverImage: "/images/einstein-cover.jpg"
+coverImage: "../../assets/images/einstein-cover.jpg"
 googlePlayUrl: "https://play.google.com/store/books/details?id=dummy_id_einstein"
 dizi: "yasam-bilgeligi"
 pubDate: 2024-02-01

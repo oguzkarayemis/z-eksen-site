@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import BookCard from '../components/BookCard.astro';
+import { Image } from 'astro:assets';
 
 const allBooks = await getCollection('books');
 
@@ -40,7 +41,7 @@ const latestBooks = sortedBooks.filter(b => b.id !== mansetBook?.id).slice(0, 3)
         <div class="hero-image">
           {mansetBook.data.coverImage ? (
             <a href={`/kitaplar/${mansetBook.slug}/`}>
-              <img src={mansetBook.data.coverImage} alt={`${mansetBook.data.title} Kapak Resmi`} loading="eager" />
+              <Image src={mansetBook.data.coverImage} alt={mansetBook.data.title} format="webp" width={900} quality="high" loading="eager" fetchpriority="high" decoding="sync" />
             </a>
           ) : (
             <div class="cover-placeholder">Görsel Yok</div>

@@ -2,8 +2,8 @@
 title: "Kriptofelsefe: Blokzincir ve Merkezsiz Toplum"
 author: "Vitalik Buterin"
 description: "Ethereum kurucusu Vitalik Buterin'in dijital yönetişim, merkeziyetsizlik felsefesi ve açık kaynak etiği üzerine yazdığı makalelerden derlenen özel bir seçki."
-price: 150
-coverImage: "/images/vitalik-cover.jpg"
+price: 220
+coverImage: "../../assets/images/vitalik-cover.jpg"
 googlePlayUrl: "https://play.google.com/store/books/details?id=dummy_id_vitalik"
 dizi: "dijital-yasam-bilgeligi"
 pubDate: 2024-03-01

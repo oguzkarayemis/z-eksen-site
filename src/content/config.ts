@@ -2,14 +2,14 @@ import { defineCollection, z } from 'astro:content';
 
 const booksCollection = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     author: z.string(),
     description: z.string().optional(),
     pubDate: z.coerce.date().optional(),
     manset: z.boolean().optional(),
     price: z.number(),
-    coverImage: z.string().optional(),
+    coverImage: image().optional(),
     googlePlayUrl: z.string().url(),
     dizi: z.string().optional(),
   }),

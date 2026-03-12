@@ -3,7 +3,7 @@ title: "Para Kazanma Sanatı"
 author: "P. T. Barnum"
 description: "Gösteri dünyasının kurucu babası P.T. Barnum'un kaleminden, kitle psikolojisinin ve kapitalist illüzyonun temellerini ifşa eden bir 'tersine-okuma' metni."
 price: 150
-coverImage: "/images/barnum-cover.jpg"
+coverImage: "../../assets/images/barnum-cover.jpg"
 googlePlayUrl: "https://play.google.com/store/books/details?id=dummy_id_barnum"
 dizi: "yasam-bilgeligi"
 pubDate: 2024-01-01
@@ -11,7 +11,7 @@ pubDate: 2024-01-01
 
 ## Kitap Hakkında
 
-19. yüzyılın en meşhur şovmeni Phineas Taylor Barnum'un yazdığı *Para Kazanma Sanatı* (The Art of Money Getting), ilk bakışta klasik bir kişisel gelişim kitabı gibi görünse de z-eksen'in eleştirel okumasıyla bu metin, modern kapitalizmin ve "gösteri toplumunun" el kitabı olarak yeniden konumlandırılıyor. 
+On dokuzuncu yüzyılın en meşhur şovmeni Phineas Taylor Barnum'un yazdığı *Para Kazanma Sanatı* (The Art of Money Getting), ilk bakışta klasik bir kişisel gelişim kitabı gibi görünse de z-eksen'in eleştirel okumasıyla bu metin, modern kapitalizmin ve "gösteri toplumunun" el kitabı olarak yeniden konumlandırılıyor. 
 
 ### İllüzyonun Anatomisi
 

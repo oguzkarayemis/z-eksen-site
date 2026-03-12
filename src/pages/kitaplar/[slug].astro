@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const books = await getCollection('books');
@@ -11,8 +12,13 @@ export async function getStaticPaths() {
 }
 
 const { book } = Astro.props;
-const { title, author, description, price, coverImage, googlePlayUrl } = book.data;
+const { title, author, description, price, coverImage, googlePlayUrl, dizi } = book.data;
 const { Content } = await book.render();
+
+const allBooks = await getCollection('books');
+const relatedBooks = dizi 
+  ? allBooks.filter((b) => b.data.dizi === dizi && b.id !== book.id).sort(() => 0.5 - Math.random()).slice(0, 4)
+  : [];
 
 const schema = {
   "@context": "https://schema.org",
@@ -39,7 +45,7 @@ const schema = {
 
   <article class="book-detail">
     <div class="book-header">
-      {coverImage && <img src={coverImage} alt={`${title} Kapak Resmi`} class="book-cover" />}
+      {coverImage && <Image src={coverImage} alt={`${title} Kapak Resmi`} class="book-cover" format="webp" width={400} loading="eager" fetchpriority="high" decoding="sync" />}
       <div class="book-info">
         <h1>{title}</h1>
         <h2 class="author">{author}</h2>
@@ -59,6 +65,29 @@ const schema = {
         <Content />
       </div>
     </div>
+
+    {relatedBooks.length > 0 && (
+      <div class="related-books">
+        <h3>Aynı Dizideki Diğer Kitaplarımız</h3>
+        <div class="related-grid">
+          {relatedBooks.map((relatedBook) => (
+            <a href={`/kitaplar/${relatedBook.slug}/`} class="related-card">
+              <div class="related-cover-wrapper">
+                {relatedBook.data.coverImage ? (
+                  <Image src={relatedBook.data.coverImage} alt={`${relatedBook.data.title} Kapak Resmi`} width={150} format="webp" loading="lazy" decoding="async" />
+                ) : (
+                  <div class="related-placeholder">Görsel Yok</div>
+                )}
+              </div>
+              <div class="related-meta">
+                <h4 class="related-title">{relatedBook.data.title}</h4>
+                <p class="related-author">{relatedBook.data.author}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
   </article>
 </Layout>
 
@@ -122,19 +151,146 @@ const schema = {
     color: #ffffff;
   }
   .book-content {
+    max-width: 720px;
+    margin: 4rem auto 0;
+    font-size: 1.15rem;
     line-height: 1.8;
+  }
+  .book-content :global(p), .description p {
+    margin-bottom: 1.75rem;
   }
   .description {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px dashed var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    position: relative;
+    border: none;
+    text-align: center;
+  }
+  .description::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-text-muted);
+    margin: 3rem auto 0;
   }
   
   .render-content :global(h2) {
-    margin-top: 2rem;
+    font-size: 2rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--color-text);
+  }
+  
+  .render-content :global(h3) {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .render-content :global(blockquote) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3.5rem 0;
+    line-height: 1.4;
+    border: none;
+    padding: 0;
+    color: var(--color-text);
+  }
+  
+  .render-content :global(blockquote p) {
+    margin-bottom: 0;
+  }
+  
+  /* Related Books - İlgili Kitaplar */
+  .related-books {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-bg-secondary);
+  }
+  .related-books h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (min-width: 600px) {
+    .related-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-bg-secondary);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08); 
+    border-color: #d0d0d0;
+  }
+  .related-card:hover .related-title {
     color: var(--color-accent);
   }
+  .related-cover-wrapper {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background-color: var(--color-bg-secondary);
+  }
+  .related-cover-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .related-card:hover .related-cover-wrapper img {
+    transform: scale(1.02);
+  }
+  .related-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+  .related-meta {
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .related-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+    transition: color 0.15s ease;
+  }
+  .related-author {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-top: auto;
+  }
+
   @media (max-width: 768px) {
     .book-header { flex-direction: column; align-items: center; text-align: center; }
     .book-cover { max-width: 100%; height: auto; }

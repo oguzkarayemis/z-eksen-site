@@ -1,10 +1,12 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 
 export default defineConfig({
-  site: 'https://z-eksen.eth.limo',
+  site: 'https://z-eksen.com',
   base: '/',
   trailingSlash: 'always',
+  integrations: [sitemap()],
   build: {
     format: 'directory'
   },

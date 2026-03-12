@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props {
   book: CollectionEntry<'books'>;
@@ -12,7 +13,7 @@ const { title, author, coverImage } = book.data;
 <a href={`/kitaplar/${book.slug}/`} class="book-card">
   <div class="cover-wrapper">
     {coverImage ? (
-      <img src={coverImage} alt={`${title} Kapak Resmi`} loading="lazy" />
+      <Image src={coverImage} alt={`${title} Kapak Resmi`} format="webp" width={300} aspectRatio={"2/3"} quality="mid" loading="lazy" decoding="async" />
     ) : (
       <div class="cover-placeholder">Görsel Yok</div>
     )}
