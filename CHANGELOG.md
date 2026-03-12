@@ -1,6 +1,7 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
 ## [2026-03-12]
+- **Kitaplar Koleksiyonu Link Yapısı Optimizasyonu**: Kitap dosya isimleri yenilenerek sitedeki kitaplar koleksiyonu link yapısı güncellendi.
 - **Header Logo Optimizasyonu**: Sitenin ana logosu (`Logo-ters.png`) `src/assets/images/` klasörüne taşındı ve `Layout.astro` içerisindeki standart `<img>` etiketi Astro'nun yerleşik `<Image />` bileşenine (webp formatı, `loading="eager"`) dönüştürülerek sayfa ilk yükleme performansı (LCP) artırıldı.
 - **PageSpeed & SEO Optimizasyonu**: `Layout.astro` dosyasına eksik `description` meta etiketi eklendi. Sayfa başlıklarına varsayılan bir manifesto metni tanımlandı.
 - **Site Haritası & Robots.txt**: `@astrojs/sitemap` entegrasyonu kurularak `astro.config.mjs` üzerinden `https://z-eksen.com` adresli site haritası oluşturuldu. Arama motorları için `public/robots.txt` dosyası eklendi.
