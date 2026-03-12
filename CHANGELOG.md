@@ -1,6 +1,7 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
 ## [2026-03-12]
+- **Bültene Abone Ol Butonu Optimizasyonu**: `Layout.astro` içerisinde hem header hem de footer kısmında yer alan bültene abone ol butonu, `paragraph.com/@z-eksen` adresine yönlendirilecek şekilde güncellendi.
 - **Anasayfa Başlık Hiyerarşisi Optimizasyonu**: Anasayadaki manşetteki kitabın başlığı h1'den h2'ye alınarak SEO ve ekran okuyucular için optimize edildi.
 - **Hero Manşet Optimizasyonu**: Ana sayfada (`index.astro`) manşet kitap görseli, `BookCard` bileşeniyle değiştirildi. Böylece manşet kitap görseli masaüstünde sola taşındı ve metin ondan sonra görünür oldu. Bu sayede mobilde manşetteki kitap görseli metnin üstüne taşınmış oldu.
 - **Kitaplar Koleksiyonu Link Yapısı Optimizasyonu**: Kitap dosya isimleri yenilenerek sitedeki kitaplar koleksiyonu link yapısı güncellendi.
@@ -8,7 +9,7 @@
 - **PageSpeed & SEO Optimizasyonu**: `Layout.astro` dosyasına eksik `description` meta etiketi eklendi. Sayfa başlıklarına varsayılan bir manifesto metni tanımlandı.
 - **Site Haritası & Robots.txt**: `@astrojs/sitemap` entegrasyonu kurularak `astro.config.mjs` üzerinden `https://z-eksen.com` adresli site haritası oluşturuldu. Arama motorları için `public/robots.txt` dosyası eklendi.
 - **Astro Image (WebP) Optimizasyonu**: Kapak görsellerinin Astro tarafından WebP formatında derlenip optimize edilebilmesi için `public/images/` dizinindeki tüm resimler referans `src/assets/images/` dizinine taşındı. `config.ts` şeması `image()` yardımcısıyla kullanıldı.
-- **LCP ve Detay Sayfası Optimizasyonu**: Ana sayfadaki (`index.astro`) dev manşet görseli, arşivdeki listeleme kartları (`BookCard.astro`) ve kitapların tekil detay sayfalarındaki (`[slug].astro`) görселer Astro'nun yerleşik `<Image />` bileşeniyle değiştirildi (`format="webp"`, `eager/lazy loading`, boyutlandırma ve `fetchpriority` eklenerek PageSpeed hatasız hale getirildi).
+- **LCP ve Detay Sayfası Optimizasyonu**: Ana sayfadaki (`index.astro`) dev manşet görseli, arşivdeki listeleme kartları (`BookCard.astro`) ve kitapların tekil detay sayfalarındaki (`[slug].astro`) görseller Astro'nun yerleşik `<Image />` bileşeniyle değiştirildi (`format="webp"`, `eager/lazy loading`, boyutlandırma ve `fetchpriority` eklenerek PageSpeed hatasız hale getirildi).
 - **İlgili Kitaplar Modülü**: Kitap detay sayfası (`[slug].astro`) sonuna, okuyucunun o kitapla aynı diziye (`dizi`) mensup diğer yayınları keşfedebileceği rastgele 4 kitaplık (4'lü grid) "Aynı Dizideki Diğer Kitaplarımız" öneri modülü eklendi.
 - **Tipografi ve Okunabilirlik İyileştirmesi**: Tekil kitap sayfalarındaki (`[slug].astro`) içerik ve makale alanı, `Manifesto` sayfasındaki okunabilirlik standartlarına göre güncellendi. Metin satır aralıkları, paragraf boşlukları ve makale genişliği (`max-width: 720px`) ayarlanarak "dar/sıkışık" görünüm ortadan kaldırıldı; alıntı (blockquote) blokları merkezî/vurgulu hale getirildi.
 - **Tipografi Ön Yükleme (Preload)**: Sayfa ilk açılışındaki FOUT problemlerini çözmek için `global.css` dosyasındaki Font Face ayarları `font-display: swap` olarak güncellendi ve eş zamanlı olarak `Layout.astro` içerisinde `<head>` kısmına `Cormorant Garamond` font dosyaları için `<link rel="preload">` tanımlamaları eklendi.

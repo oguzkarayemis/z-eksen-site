@@ -67,6 +67,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <a href="/kitaplar/">Kitaplar</a>
           <a href="/diziler/">Diziler</a>
           <a href="/manifesto/">Manifesto</a>
+          <a href="https://paragraph.com/@z-eksen" target="_blank" rel="noopener noreferrer">Bülten</a>
         </nav>
       </div>
     </header>
@@ -76,6 +77,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </main>
 
     <footer class="site-footer">
+      <div class="newsletter-cta">
+        <h3>z-eksen'den</h3>
+        <p>Yeni kitaplardan, makalelerden ve editoryal seçkilerimizden ilk siz haberdar olun. (Web3 veya E-posta ile)</p>
+        <a href="https://paragraph.com/@z-eksen" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 1rem;">
+        Bültene Abone Ol
+        </a>
+      </div>
       <div class="container">
         <p>z-eksen e-yayıncılık &copy; {new Date().getFullYear()}. İnsanın kadim ve çağdaş meselelerine derinlikli yaklaşımlar.</p>
         <div class="footer-contact" style="margin-bottom: 0.5rem;">İletişim: <a href="mailto:info@z-eksen.org">info@z-eksen.org</a></div>
@@ -174,6 +182,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       margin: 0.5rem auto 0 auto;
       justify-content: center;
       width: 100%;
+    }
+    .newsletter-cta {
+      background-color: var(--color-bg-secondary);
+      padding: 2.5rem 1.5rem;
+      border-radius: 4px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+      border: 1px solid #d0d0d0;
+    }
+    .newsletter-cta h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--color-text);
+    }
+    .newsletter-cta p {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
     }
   }
 </style>
