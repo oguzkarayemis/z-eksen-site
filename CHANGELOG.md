@@ -1,5 +1,14 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
+## [2026-03-19]
+- **İçerik Mimarisi ve Dosya İsimlendirme Standartları**: Kitapların markdown dosyaları ve kapak görselleri dizideki sırasını ve yazar ismini içerecek şekilde bütüncül olarak yeniden adlandırıldı (Örn: `01-v.buterin-kriptofelsefe.md`, referans görsel: `01-vitalik-cover.jpg`). Eski rastgele isimlendirmeler iptal edildi.
+- **Kitap Metinlerinin Felsefi Revizyonu**: Kataloğa eklenen ilk üç kitabın (Einstein, Buterin, Barnum) arka kapak/tanıtım metinleri, z-eksen'in Anti-Moloch, eleştirel baskı ve "dijital zanaatkârlık" vizyonunu yansıtacak biçimde, çok daha derinlikli bir tonla baştan aşağı yeniden yazıldı.
+- **Manifesto ve Ana Sayfa Entegrasyonu**: Sitenin `manifesto.astro` sayfasındaki z-eksen manifestosu güçlü ve vurucu bir retorikle (Y ve X eksenlerindeki yüzeysel gürültüye karşı Z eksenindeki derinlik vurgusuyla) yeniden kaleme alındı. Yayınevinin "çeviri ve editörlük" prensipleri (Türkçenin organik sözdizimine sadakat) manifestoya doğrudan entegre edildi. Ana sayfa hero metni "Dijital Zanaatkârlık ve Derin Kavrayış" mottosuyla güncellenerek bu vizyonla uyumlu hale getirildi.
+- **Astro Config (Zod) Güncellemesi**: İçerik şemasındaki (`config.ts`) `pubDate` ve `price` alanları metin girişlerini (örn. "yakında", "-") de destekleyecek şekilde esnetildi ve build hataları çözüldü.
+- **Kitap Kartı (BookCard) Arayüz Standardı**: İçinde sınır çizgisi barındırmayan kapak görselleri sebebiyle metin ve görsel alanının birbirine girmemesi için `BookCard` bileşeninde kapak alanının altına standart bir CSS ayırıcı çizgisi (`border-bottom`) eklendi.
+- **Google Play Bağlantısı**: Kitap detay sayfalarındaki (`[slug].astro`) satış butonu tıklanamaz hale getirilip "Yakında Google Play Books'ta" yazısıyla değiştirildi.
+- **Diziler ve Vitrin**: Vitalik Buterin'in *Kriptofelsefe* metni `manset: true` ile anasayfada dev manşete çekildi. İçeriği henüz hazır olmayan "Modern Felsefe Dizisi" yayından geçici olarak kaldırılarak `draft` statüsüne alındı.
+
 ## [2026-03-12]
 - **Bültene Abone Ol Butonu Optimizasyonu**: `Layout.astro` içerisinde hem header hem de footer kısmında yer alan bültene abone ol butonu, `paragraph.com/@z-eksen` adresine yönlendirilecek şekilde güncellendi.
 - **Anasayfa Başlık Hiyerarşisi Optimizasyonu**: Anasayadaki manşetteki kitabın başlığı h1'den h2'ye alınarak SEO ve ekran okuyucular için optimize edildi.

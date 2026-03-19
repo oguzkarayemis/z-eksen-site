@@ -51,8 +51,8 @@ const schema = {
         <h2 class="author">{author}</h2>
         
         <div class="price-action">
-          <span class="price">{price} TL</span>
-          <a href={googlePlayUrl} target="_blank" rel="noopener noreferrer" class="buy-button">Google Play'den Satın Al</a>
+          {price !== '-' && <span class="price">{price} TL</span>}
+          <span class="buy-button" style="cursor: default; pointer-events: none; opacity: 0.9;">Yakında Google Play Books'ta</span>
         </div>
       </div>
     </div>
