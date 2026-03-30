@@ -1,5 +1,8 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
+## [2026-03-30]
+- **Analitik Entegrasyonu**: Site istatistiklerinin takibi için Google Analytics (gtag.js) entegre edildi. Scriptlerin Astro derleme (build) sürecinden etkilenmeden doğrudan HTML'e basılması için `is:inline` direktifi `Layout.astro` dosyasında yer alan etiketlere uygulandı.
+
 ## [2026-03-19]
 - **İçerik Mimarisi ve Dosya İsimlendirme Standartları**: Kitapların markdown dosyaları ve kapak görselleri dizideki sırasını ve yazar ismini içerecek şekilde bütüncül olarak yeniden adlandırıldı (Örn: `01-v.buterin-kriptofelsefe.md`, referans görsel: `01-vitalik-cover.jpg`). Eski rastgele isimlendirmeler iptal edildi.
 - **Kitap Metinlerinin Felsefi Revizyonu**: Kataloğa eklenen ilk üç kitabın (Einstein, Buterin, Barnum) arka kapak/tanıtım metinleri, z-eksen'in Anti-Moloch, eleştirel baskı ve "dijital zanaatkârlık" vizyonunu yansıtacak biçimde, çok daha derinlikli bir tonla baştan aşağı yeniden yazıldı.
