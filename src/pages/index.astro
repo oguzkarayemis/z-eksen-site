@@ -8,8 +8,8 @@ const allBooks = await getCollection('books');
 
 // Tarihe göre en yeniden en eskiye sırala
 const sortedBooks = allBooks.sort((a, b) => {
-  const dateA = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
-  const dateB = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
+  const dateA = a.data.pubDate ? (new Date(a.data.pubDate).valueOf() || 0) : 0;
+  const dateB = b.data.pubDate ? (new Date(b.data.pubDate).valueOf() || 0) : 0;
   return dateB - dateA;
 });
 

@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { book } = Astro.props;
-const { title, author, description, price, coverImage, googlePlayUrl, dizi } = book.data;
+const { title, author, description, price, coverImage, googlePlayUrl, dizi, pubDate } = book.data;
 const { Content } = await book.render();
 
 const allBooks = await getCollection('books');
@@ -52,7 +52,11 @@ const schema = {
         
         <div class="price-action">
           {price !== '-' && <span class="price">{price} TL</span>}
-          <span class="buy-button" style="cursor: default; pointer-events: none; opacity: 0.9;">Yakında Google Play Books'ta</span>
+          {pubDate && pubDate !== 'yakında' ? (
+            <a href={googlePlayUrl} target="_blank" rel="noopener noreferrer" class="buy-button">Google Play'den Al</a>
+          ) : (
+            <span class="buy-button" style="cursor: default; pointer-events: none; opacity: 0.9;">Yakında Google Play Books'ta</span>
+          )}
         </div>
       </div>
     </div>

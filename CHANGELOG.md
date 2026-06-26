@@ -1,5 +1,10 @@
 # z-eksen e-yayıncılık Değişiklik Kayıtları (Changelog)
 
+## [2026-06-26]
+- **Google Play Books Mağaza Onayı ve Satış Aktivasyonu**: Einstein'ın *Kozmik Din* ve P. T. Barnum'un *Para Kazanma Sanatı* kitaplarının Google Play Books onayları sonrasında fiyat bilgileri ve mağaza bağlantıları güncellendi.
+- **Dinamik Satış Butonu**: Kitap detay sayfasında (`[slug].astro`) yayımlanmış kitaplar için Google Play Books mağaza linki aktif hale getirildi; henüz yayımlanmamış kitaplar için "Yakında" durumu korunacak şekilde koşullu yapı kuruldu.
+- **Yayın Tarihi Sıralama İyileştirmesi**: `pubDate` değeri `"yakında"` olan kitapların sıralamayı bozmasını engelleyen sıralama algoritması düzeltildi.
+
 ## [2026-03-30]
 - **Analitik Entegrasyonu**: Site istatistiklerinin takibi için Google Analytics (gtag.js) entegre edildi. Scriptlerin Astro derleme (build) sürecinden etkilenmeden doğrudan HTML'e basılması için `is:inline` direktifi `Layout.astro` dosyasında yer alan etiketlere uygulandı.
 
